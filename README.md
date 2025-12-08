@@ -8,15 +8,15 @@
 1. MCU
     *   NUCLEO-L476RG development board for its STM32L476RG Microprocessor (ARM Cortex-M4)
 2. Circuit
-    *   Overview ![System Architecture Diagram](https://github.com/addysfsu/Light_Chaser/blob/main/image-1.png?raw=true)
-    *   LTSpice Schematic ![Direct Circuit](https://github.com/addysfsu/Light_Chaser/blob/main/image-2.png?raw=true)
+    *   Overview ![System Architecture Diagram](https://github.com/addysfsu/Light_Chaser/blob/main/img/image-1.png?raw=true)
+    *   LTSpice Schematic ![Direct Circuit](https://github.com/addysfsu/Light_Chaser/blob/main/img/image-2.png?raw=true)
 ## Software
 1. Required header files
     *   Be sure you have CMSIS package in your project folder
-    *   ![Screenshot of project file structure, showing subfolder 'CMSIS'](https://github.com/addysfsu/Light_Chaser/blob/main/image.png?raw=true)
+    *   ![Screenshot of project file structure, showing subfolder 'CMSIS'](https://github.com/addysfsu/Light_Chaser/blob/main/img/image.png?raw=true)
 2. Software Logic
-    *   ![UML-1](https://github.com/addysfsu/Light_Chaser/blob/main/image-3.png?raw=true)
-    *   ![UML-2](https://github.com/addysfsu/Light_Chaser/blob/main/image-4.png?raw=true)
+    *   ![UML-1](https://github.com/addysfsu/Light_Chaser/blob/main/img/image-3.png?raw=true)
+    *   ![UML-2](https://github.com/addysfsu/Light_Chaser/blob/main/img/image-4.png?raw=true)
 ## 3D Print
 1. 3D model files
     *   The 3D model .stl files were created in Shapr3D
