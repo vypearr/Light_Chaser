@@ -14,6 +14,9 @@
 1. Required header files
     *   Be sure you have CMSIS package in your project folder
     *   ![Screenshot of project file structure, showing subfolder 'CMSIS'](https://github.com/addysfsu/Light_Chaser/blob/main/image.png?raw=true)
+2. Software Logic
+    *   ![UML-1](https://github.com/addysfsu/Light_Chaser/blob/main/image-3.png?raw=true)
+    *   ![UML-2](https://github.com/addysfsu/Light_Chaser/blob/main/image-4.png?raw=true)
 ## 3D Print
 1. 3D model files
     *   There is a plate for holding the LEDs and buttons, that snaps into a case. An existing clear plastic bubble was repurposed for our build, however any XX diameter hemisphere will do.
