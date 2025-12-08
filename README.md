@@ -9,6 +9,7 @@
     *   NUCLEO-L476RG development board for its STM32L476RG Microprocessor (ARM Cortex-M4)
 2. Circuit
     *   Overview ![System Architecture Diagram](https://github.com/addysfsu/Light_Chaser/blob/main/image-1.png?raw=true)
+    *   LTSpice Schematic ![Direct Circuit](https://github.com/addysfsu/Light_Chaser/blob/main/image-2.png?raw=true)
 ## Software
 1. Required header files
     *   Be sure you have CMSIS package in your project folder
