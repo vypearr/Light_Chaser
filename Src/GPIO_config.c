@@ -60,7 +60,6 @@ void configure_Button_pc13(void)
     EXTI->RTSR1 &= ~(1 << 13);
 
     // NVIC
-    NVIC_SetPriority(EXTI15_10_IRQn, 1);
     NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
