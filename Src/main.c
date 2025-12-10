@@ -14,6 +14,10 @@ static const int led_pins[NUM_LEDS] = { 0, 1, 6, 7, 4 }; // static because it re
 volatile unsigned int pinNum = 0;      // 0 to 4 index into led_pins[], unsigned because we dont use negative index values
 volatile int game_running = 1;
 volatile int button_pressed = 0;
+volatile int speed_index = 0;
+//#define speed_number 3
+static const int speeds[3] = {8000000, 4500000, 1000000};
+volatile int difficulty = 0;
 
 // SysTick: step LEDs
 void SysTick_Handler(void)
@@ -43,9 +47,11 @@ void EXTI15_10_IRQHandler(void)
 		if (game_running) {
 			//moved to here
 			//game starts when we press this
-			SysTick_Init(4000000);
+		__disable_irq();
+			SysTick_Init(difficulty);
 			game_running = 0;
 			button_pressed = 1;
+			__enable_irq();
 		}
 	}
 }
@@ -68,32 +74,39 @@ void EXTI2_IRQHandler(void) {
 				int target_pin = led_pins[TARGET_INDEX];
 				//toggles immediately
 				GPIOA->ODR ^= (1 << target_pin);
+				if (speed_index == 2) speed_index = -1;
+				speed_index++;
 				for (int l = 0; l < 6; l++) {
-				GPIOA->ODR ^= (1 << target_pin);
-				// simple delay
-				for (volatile int d = 0; d < 200000; d++);
+					GPIOA->ODR ^= (1 << target_pin);
+					// simple delay
+					for (volatile int d = 0; d < 200000; d++);
 				}
 			} else {
 				// Blink all LEDs a few times
 				for (int l = 0; l < 6; l++) {
 					GPIOA->ODR ^= LED_MASK;
+					if(speed_index != 0) speed_index--;
 					// simple delay
 					for (volatile int d = 0; d < 200000; d++);
 				}
 				GPIOA->ODR &= ~LED_MASK;
 			}
+			SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
 			__enable_irq();
+			difficulty = speeds[speed_index];
+			SysTick_Init(difficulty);
+
 		}
 	}
 }
 
 void configure_EXTI(void){
 
-	//1. Enable the EXTI line 2 interrupt in the NVIC 
+	//1. Enable the EXTI line 2 interrupt in the NVIC
 	NVIC_EnableIRQ(EXTI2_IRQn);
 
 	//2. Configure the SYSCFG module
-	// link EXTI line 2 to GPIO PC2 
+	// link EXTI line 2 to GPIO PC2
 	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;				// Enable the clock to SYSCFG
 	//exti line 2, clear and set
 	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI2;     	// Clear the EXTI2 bits in SYSCFG's EXTICR1 register.
@@ -120,12 +133,13 @@ int main(void)
 	GPIOA->ODR &= ~LED_MASK;
 
 	configure_Button_pc13();
-	configure_Button_pc2();  
+	configure_Button_pc2();
 	configure_EXTI();
 
 	pinNum = NUM_LEDS - 1;
 	game_running = 1;
 	button_pressed = 0;
+	difficulty = speeds[speed_index];
 
 	while (1)
 	{
@@ -134,8 +148,10 @@ int main(void)
 			__disable_irq();
 			button_pressed = 0;
 			game_running = 1;
-			SysTick_Init(4000000);
+			SysTick_Init(difficulty);
+			//difficulty = speeds[speed_index];
 			__enable_irq();
 		}
+
 	}
 }
