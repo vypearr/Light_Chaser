@@ -22,3 +22,8 @@
     *   The 3D model .stl files were created in Shapr3D
     *   There is a plate for holding the LEDs and buttons, that snaps into a case. An existing clear plastic bubble was repurposed for our build, however any 71mm diameter hemisphere will do.
     *   For the LED holding mounts, [this](https://www.printables.com/model/625992-5mm-led-holder) print was used
+  
+
+## 🎥 Demo Video (CLICK THE IMAGE BELOW TO SEE DEMO)
+
+[![Watch the demo](images/light-chaser.png)](https://www.youtube.com/shorts/qK_xfCXJWZs)
